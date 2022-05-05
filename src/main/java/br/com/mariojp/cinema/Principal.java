@@ -12,6 +12,13 @@ public class Principal {
 
 		System.out.println("Assentos por Filas:");
 		int assentosPorFileira = Integer.parseInt(teclado.nextLine());
+		
+
+		System.out.print("Numero da Filas: ");
+		int afila = Integer.parseInt(teclado.nextLine());
+
+		System.out.println("Assentos:");
+		int assento = Integer.parseInt(teclado.nextLine());
 
 		String[][] cinema = new String[fileiras][assentosPorFileira];
 
@@ -21,6 +28,9 @@ public class Principal {
 				cinema[i][j] = "S";
 			}
 		}
+		
+		
+		 cinema[afila-1][assento-1] = "B";
 
 		System.out.println("Cinema:");
 		String fila = " ";
@@ -49,6 +59,21 @@ public class Principal {
 
 		System.out.println("Total: ");
 		System.out.println("R$" + total);
+		
+		
+	      int valor = 0;
+	      if (assentos <= 60) {
+	        valor = 10;
+	      } else {
+	        int meio = cinema.length / 2;
+	        if(afila <= meio){
+	          valor = 10;
+	        }else{
+	          valor = 8;
+	        }
+	      }
+	      
+	      System.out.println("Ingresso: R$"+valor);
 
 	}
 
