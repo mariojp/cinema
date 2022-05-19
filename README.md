@@ -138,7 +138,7 @@ As estatísticas mostrarão:
 - Renda atual
 - Receita total que mostra quanto dinheiro o teatro receberá se todos os ingressos forem vendidos.
 
-# Parte 6 
+# Parte 5 
 
 ## Descrição
 Para facilitar o desenvolvimento vamos trocar os arrays por Coleções.
