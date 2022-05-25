@@ -1,21 +1,25 @@
 package br.com.mariojp.cinema;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
 
-	private static String[][] cinema = null;
+	private static List<List<Assento>> cinema = new ArrayList<List<Assento>>();
 	private static int ingresos = 0;
 	private static double total = 0;
 	private static double totalvendido = 0;
 
 	private static void criaSala(int fileiras, int assentosPorFileira) {
-		cinema = new String[fileiras][assentosPorFileira];
-		cinema[0][0] = " ";
 		for (int i = 0; i < fileiras; i++) {
+			List<Assento> fila = new ArrayList<Assento>();
 			for (int j = 0; j < assentosPorFileira; j++) {
-				cinema[i][j] = "S";
+				Assento a = new Assento();
+				
+				fila.add(a);
 			}
+			cinema.add(fila);
 		}
 
 		int assentos = fileiras * assentosPorFileira;
@@ -33,27 +37,34 @@ public class Principal {
 
 	public static void imprimeSala() {
 		System.out.println("Cinema:");
-		String fila = " ";
-		for (int i = 1; i <= cinema.length; i++)
-			fila = fila + " " + i;
-		System.out.println(fila);
-		for (int i = 0; i < cinema.length; i++) {
+		String filas = " ";
+		for (int i = 1; i <= cinema.size(); i++)
+			filas = filas + " " + i;
+		System.out.println(filas);
+		for (int i = 0; i < cinema.size(); i++) {
 			System.out.print((i + 1) + " ");
-			for (int j = 0; j < cinema[i].length; j++) {
-				System.out.print(cinema[i][j] + " ");
+			
+			for (int j = 0; j < cinema.get(i).size(); j++) {
+			
+				System.out.print(cinema.get(i).get(j) + " ");
+			
 			}
+			
 			System.out.println();
 		}
 	}
 
 	private static void vendaAssento(int fila, int assento) {
-		cinema[fila - 1][assento - 1] = "B";
-		int assentos = cinema.length*cinema[0].length;
+		Assento a = cinema.get(fila-1).remove(assento-1);
+		a.setSituacao(true);
+		cinema.get(fila-1).add(assento-1,a);
+		
+		int assentos = cinema.size()*cinema.get(0).size();
 		int valor = 0;
 		if (assentos <= 60) {
 			valor = 10;
 		} else {
-			int meio = cinema.length / 2;
+			int meio = cinema.size() / 2;
 			if (fila <= meio) {
 				valor = 10;
 			} else {
